@@ -1,0 +1,6 @@
+{
+    "model_type": "SoftVoting + IsotonicCalibration",
+    "target": "Churn Probability",
+    "features_version": "v1",
+    "notes": "Threshold decided in decision notebook"
+}

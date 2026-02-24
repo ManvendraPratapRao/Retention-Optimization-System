@@ -1,0 +1,25 @@
+{
+  "model_name": "Churn Retention Classifier",
+  "model_version": "1.0.0",
+  "training_date": "2026-02-20",
+  "features_used": [
+    "tenure",
+    "MonthlyCharges",
+    "SeniorCitizen",
+    "Partner",
+    "Dependents",
+    "Contract",
+    "PaymentMethod",
+    "PaperlessBilling",
+    "InternetService",
+    "TechSupport",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "StreamingTV",
+    "StreamingMovies"
+  ],
+  "roc_auc": 0.85,
+  "PR-AUC": 0.64,
+  "best_threshold": 0.314
+}
