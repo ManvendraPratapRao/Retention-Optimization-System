@@ -1,7 +1,10 @@
 import requests
+import os
 
-BASE_URL = "http://127.0.0.1:8000"
-
+BASE_URL = os.getenv(
+    "BACKEND_URL",
+    "https://your-render-url.onrender.com"
+)
 
 def predict_single(payload):
     response = requests.post(f"{BASE_URL}/predict-single", json=payload)
