@@ -285,12 +285,10 @@ See: docs/deployment.md
 ---
 ## 📊 Documentation
 Detailed technical documentation available in:
-- `docs/architecture.md`
-- `docs/modeling.md`
-- `docs/api_contract.md`
-- `docs/decision_engine.md`
-- `docs/explainability.md`
-- `docs/deployment.md`
+- [🏗 System Architecture](docs/architecture.md)
+- [🧩 System Design & Principles](docs/system_design.md)
+- [📡 API Reference](docs/api_reference.md)
+
 
 ---
 ## 🔮 Future Improvements
