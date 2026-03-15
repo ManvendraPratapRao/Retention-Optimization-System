@@ -3,12 +3,12 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements-ui.txt .
+RUN pip install --no-cache-dir -r requirements-ui.txt
 
 # Copy Frontend Code & Assets
 COPY frontend ./frontend
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "frontend/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["python", "-m", "streamlit", "run", "frontend/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]

@@ -1,0 +1,19 @@
+# Core API Dependencies
+fastapi==0.133.0
+uvicorn==0.41.0
+pydantic==2.12.5
+python-dotenv==1.2.1
+python-multipart==0.0.22
+
+# ML Dependencies
+numpy==2.4.2
+pandas==2.3.3
+scikit-learn==1.7.1
+xgboost==3.2.0
+shap==0.50.0
+joblib==1.5.3
+
+# Utilities
+requests==2.32.5
+python-dateutil==2.9.0.post0
+tqdm==4.67.3

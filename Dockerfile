@@ -7,9 +7,9 @@ WORKDIR /app
 RUN mkdir -p /app/data
 
 # --- 3. Dependencies ---
-COPY requirements.txt .
+COPY requirements-api.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements-api.txt
 
 # --- 4. Application Code ---
 COPY . .
