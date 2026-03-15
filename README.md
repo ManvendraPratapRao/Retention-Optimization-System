@@ -288,6 +288,11 @@ Detailed technical documentation available in:
 - [🏗 System Architecture](docs/architecture.md)
 - [🧩 System Design & Principles](docs/system_design.md)
 - [📡 API Reference](docs/api_reference.md)
+- [📊 Modeling & Calibration](docs/modeling.md)
+- [💰 Economic Decision Engine](docs/decision_engine.md)
+- [🔍 SHAP Explainability](docs/explainability.md)
+- [🚀 Deployment Guide](docs/deployment.md)
+
 
 
 ---
