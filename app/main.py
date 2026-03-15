@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routes import (
     predict_single,
     predict_batch,
-    health,
-    monitoring  # Import new router
+    monitoring,
+    model_info
 )
 
 app = FastAPI(
@@ -32,6 +32,7 @@ app.add_middleware(
 app.include_router(predict_single.router)
 app.include_router(predict_batch.router)
 app.include_router(model_info.router)
+app.include_router(monitoring.router)
 
 # -----------------------------
 # Health Check

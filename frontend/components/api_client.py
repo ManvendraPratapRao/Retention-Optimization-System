@@ -3,7 +3,7 @@ import os
 
 BASE_URL = os.getenv(
     "BACKEND_URL",
-    "https://your-render-url.onrender.com"
+    "http://localhost:8000"
 )
 
 def predict_single(payload):

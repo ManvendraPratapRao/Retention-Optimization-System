@@ -130,4 +130,10 @@ def render_single_mode(business_config):
                     st.plotly_chart(fig, use_container_width=True)
         
         else:
-            st.error(f"API Error: {response.json().get('detail', 'Unknown error')}")
+            try:
+                error_detail = response.json().get('detail', 'Unknown error')
+                if isinstance(error_detail, dict):
+                    error_detail = error_detail.get('message', str(error_detail))
+                st.error(f"API Error: {error_detail}")
+            except Exception:
+                st.error(f"API Error (Status {response.status_code}): The server returned an invalid response.")

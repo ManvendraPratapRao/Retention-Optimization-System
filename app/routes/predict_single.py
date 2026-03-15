@@ -13,6 +13,7 @@ from app.decision_engine import (
 )
 
 from app.core.logger import logger
+from app.core.monitoring import monitor
 
 
 router = APIRouter()
@@ -92,7 +93,7 @@ def predict_single(request: SingleRequest):
         # including TotalCharges if present in the request.
         monitor.log_prediction(
             features=customer_dict,
-            prediction={
+            prediction_result={
                 "p_churn": p_churn,
                 "segment": segment
             },

@@ -30,26 +30,29 @@ html, body, [class*="css"] {
 [data-testid="stMetricValue"] {
     font-size: 2.5rem !important;
     font-weight: 700 !important;
-    color: #1a237e !important;
+    color: #4caf50 !important;
 }
 
 /* Sidebar Darker Polish */
 [data-testid="stSidebar"] {
-    background-color: #f8f9fa !important;
-    border-right: 1px solid #e0e0e0;
+    background-color: #161b22 !important;
+    border-right: 1px solid #30363d;
 }
 
 /* Custom Recommendation Box */
 .recommendation-box {
     padding: 1.5rem;
     border-radius: 12px;
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-    border-left: 5px solid #2e7d32;
+    background: #1c2128 !important; /* Darker card background */
+    border: 1px solid #30363d !important;
+    border-left: 5px solid #4caf50 !important;
     margin: 1rem 0;
+    color: #fafafa !important;
 }
 
 .recommendation-title {
-    color: #1b5e20;
+    color: #4caf50 !important;
+    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
