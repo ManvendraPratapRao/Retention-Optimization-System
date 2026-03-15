@@ -4,7 +4,11 @@ import os
 from datetime import datetime
 from app.core.logger import logger
 
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "monitoring.db")
+# Determine the DB path, favoring the environment variable (for Docker persistence)
+DB_PATH = os.getenv("MONITORING_DB_PATH")
+if not DB_PATH:
+    # Fallback to project root for local development
+    DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "monitoring.db")
 
 class Monitor:
     def __init__(self):

@@ -1,19 +1,21 @@
+# --- 1. Base Image ---
 FROM python:3.11-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    gcc \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
+# --- 2. Create Data Volume Directory ---
+RUN mkdir -p /app/data
 
+# --- 3. Dependencies ---
 COPY requirements.txt .
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
+# --- 4. Application Code ---
 COPY . .
 
+# --- 5. Runtime Config ---
 EXPOSE 8000
+ENV PORT=8000
 
 CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]
