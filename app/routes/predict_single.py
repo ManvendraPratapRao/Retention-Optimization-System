@@ -104,22 +104,22 @@ def predict_single(request: SingleRequest):
             "explanation": explanation
         }
 
-    except ValueError as ve:
-        logger.error(f"Validation error: {str(ve)}")
+    except (ValueError, TypeError) as ve:
+        logger.error(f"Validation or Logic error: {str(ve)}")
         raise HTTPException(
             status_code=400,
             detail={
-                "error": "ValidationError",
+                "error": "BadRequest",
                 "message": str(ve)
             }
         )
 
     except Exception as e:
-        logger.error(f"Unexpected error: {str(e)}")
+        logger.exception("Unexpected error in /predict-single")
         raise HTTPException(
             status_code=500,
             detail={
                 "error": "InternalServerError",
-                "message": "An unexpected error occurred."
+                "message": "An unexpected error occurred during prediction."
             }
         )

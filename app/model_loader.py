@@ -21,44 +21,57 @@ class ModelLoader:
     """
 
     def __init__(self):
-
         # ------------------------------------------------
-        # 1️⃣ Load Model Path from ENV (with fallback)
+        # 1️⃣ Path Resolution
         # ------------------------------------------------
         model_env_path = os.getenv("MODEL_PATH", "models/churn_pipeline.pkl")
         metadata_env_path = os.getenv("METADATA_PATH", "models/metadata.json")
         background_env_path = os.getenv("BACKGROUND_PATH", "models/background_sample.csv")
 
-        model_path = BASE_DIR / model_env_path
-        metadata_path = BASE_DIR / metadata_env_path
-        background_path = BASE_DIR / background_env_path
+        # Support both absolute and relative paths from BASE_DIR
+        model_path = Path(model_env_path) if os.path.isabs(model_env_path) else BASE_DIR / model_env_path
+        metadata_path = Path(metadata_env_path) if os.path.isabs(metadata_env_path) else BASE_DIR / metadata_env_path
+        background_path = Path(background_env_path) if os.path.isabs(background_env_path) else BASE_DIR / background_env_path
 
         # -----------------------------
-        # 2️⃣ Load Pipeline
+        # 2️⃣ Pipeline Loading & Validation
         # -----------------------------
         if not model_path.exists():
-            raise FileNotFoundError(f"Model file not found at {model_path}")
+            raise FileNotFoundError(
+                f"🚨 Critical: Model file not found at {model_path}. "
+                "Check MODEL_PATH environment variable."
+            )
 
-        self.pipeline = joblib.load(model_path)
+        try:
+            self.pipeline = joblib.load(model_path)
+            # Basic validation
+            if not hasattr(self.pipeline, "predict_proba"):
+                raise TypeError(f"Loaded artifact at {model_path} is not a valid predictor (missing predict_proba).")
+        except Exception as e:
+            raise RuntimeError(f"Failed to load model pipeline from {model_path}: {str(e)}")
 
         # -----------------------------
-        # 3️⃣ Load Metadata
+        # 3️⃣ Metadata Integration
         # -----------------------------
         if metadata_path.exists():
-            with open(metadata_path, "r") as f:
-                self.metadata = json.load(f)
+            try:
+                with open(metadata_path, "r") as f:
+                    self.metadata = json.load(f)
+            except json.JSONDecodeError:
+                self.metadata = {"model_version": "corrupt", "message": "metadata.json is not valid JSON"}
         else:
-            self.metadata = {
-                "model_version": "unknown",
-                "message": "No metadata.json found"
-            }
+            self.metadata = {"model_version": "unknown", "message": "No metadata.json file found"}
 
         # -----------------------------
-        # 4️⃣ Load SHAP Background
+        # 4️⃣ SHAP Initialization
         # -----------------------------
         if background_path.exists():
-            background_df = pd.read_csv(background_path)
-            self.explainer = ShapExplainer(self.pipeline, background_df)
+            try:
+                background_df = pd.read_csv(background_path)
+                self.explainer = ShapExplainer(self.pipeline, background_df)
+            except Exception as e:
+                # We don't want to crash the whole app if only SHAP fails
+                self.explainer = None
         else:
             self.explainer = None
 

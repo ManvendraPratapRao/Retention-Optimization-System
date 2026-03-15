@@ -1,7 +1,7 @@
 churn-retention-system/
 │
 ├── app/                           # FastAPI Backend
-│   ├── __init__.py
+│   ├── core/
 │   ├── main.py                    # FastAPI app entry
 │   ├── config.py                  # BusinessConfig
 │   ├── schemas.py                 # Pydantic schemas
@@ -14,8 +14,15 @@ churn-retention-system/
 │       ├── predict_single.py
 │       └── predict_batch.py
 │
+├── artifacts/
+│   ├── churn_model_calibrated.pkl
+│   └── preprocessor.pkl
+│
 ├── models/
-│   └── churn_pipeline.pkl         # Full sklearn pipeline
+│   ├── churn_pipeline.pkl        # Full sklearn pipeline
+│   ├── background_sample.csv
+│   ├── metadata.json
+│   └── preprocessor.pkl
 │
 ├── frontend/                      # Streamlit UI
 │   ├── streamlit_app.py
@@ -31,15 +38,37 @@ churn-retention-system/
 │   
 │
 ├── notebooks/
-│   ├── 01_model_training.ipynb
-│   └── 02_decision_validation.ipynb
+│   ├── decision_engine.ipynb
+│   ├── EDA.ipynb
+│   ├── Feature Engineering.ipynb
+│   ├── Model_train.ipynb
+│   ├── Problem_Framing.ipynb
+│   ├── shap_file_test.ipynb
+│   └── sample.ipynb
+│
+├── docs/
+│   ├── architecture.md
+│   ├── modeling.md
+│   ├── api_contract.md
+│   ├── deployment.md
+│   ├── decision_engine.md
+│   └── explainability.md
+│
+├── diagrams/
+│   ├── system_architecture.png
+│   ├── model_pipeline.png
+│   ├── decision_flow.png
+│   └── api_flow.png
 │
 ├── tests/
 │   ├── test_decision_engine.py
 │   └── test_api.py
 │
-├── Dockerfile
-├── requirements.txt
+├── venv/
 ├── .env
-├── README.md
-└── .gitignore
+├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
+├── Dockerfile.frontend
+├── requirements.txt
+└── README.md

@@ -326,3 +326,4 @@ This project demonstrates capabilities in:
 - Containerized Deployment
 - Production Engineering
 It is designed to simulate how churn intelligence systems are built in real-world SaaS or
+telecom environments. By focusing on probability calibration and economic return, it provides a blueprint for turning ML outputs into business value.
