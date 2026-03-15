@@ -1,0 +1,55 @@
+/* Modern and Premium Styling for Churn Retention System */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Rounded corners for all elements */
+.stButton>button, .stDownloadButton>button, .stTextInput>div>div>input, .stSelectbox>div>div>div {
+    border-radius: 8px !important;
+}
+
+/* Primary Button Styling */
+.stButton>button {
+    background-color: #2e7d32 !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.6rem 1.2rem !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.stButton>button:hover {
+    background-color: #1b5e20 !important;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2) !important;
+}
+
+/* Metric Card Styling */
+[data-testid="stMetricValue"] {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #1a237e !important;
+}
+
+/* Sidebar Darker Polish */
+[data-testid="stSidebar"] {
+    background-color: #f8f9fa !important;
+    border-right: 1px solid #e0e0e0;
+}
+
+/* Custom Recommendation Box */
+.recommendation-box {
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-left: 5px solid #2e7d32;
+    margin: 1rem 0;
+}
+
+.recommendation-title {
+    color: #1b5e20;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
