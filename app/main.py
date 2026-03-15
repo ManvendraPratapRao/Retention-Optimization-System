@@ -1,12 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routes import predict_single, predict_batch, model_info
+from app.routes import (
+    predict_single,
+    predict_batch,
+    health,
+    monitoring  # Import new router
+)
 
 app = FastAPI(
-    title="Churn Retention System API",
-    description="ML-powered churn prediction with economic decision engine",
-    version="1.0.0"
+    title="Churn Retention API",
+    description="Production-grade churn prediction with economic logic and monitoring.",
+    version="1.1.0"
 )
 
 # -----------------------------

@@ -3,6 +3,7 @@ from pathlib import Path
 from components.single_mode import render_single_mode
 from components.sliders import business_sliders
 from components.batch_mode import render_batch_mode
+from components.monitoring_mode import render_monitoring_mode
 
 st.set_page_config(
     page_title="Churn Intelligence Dashboard",
@@ -30,10 +31,17 @@ profitable retention actions.
 
 st.divider()
 
-mode = st.tabs(["👤 Single Customer Prediction", "📂 Batch Analysis"])
+mode = st.tabs([
+    "👤 Single Customer Prediction", 
+    "📂 Batch Analysis",
+    "📈 System Monitoring"
+])
 
 with mode[0]:
     render_single_mode(business_config)
 
 with mode[1]:
     render_batch_mode(business_config)
+
+with mode[2]:
+    render_monitoring_mode()

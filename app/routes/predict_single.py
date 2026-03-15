@@ -85,6 +85,29 @@ def predict_single(request: SingleRequest):
 
         # -----------------------------
         # 8️⃣ Return response
+        # 8️⃣ Log prediction for monitoring
+        # -----------------------------
+        # Ensure TotalCharges is included in the logged features if available
+        # customer_dict already contains all fields from SingleRequest.customer,
+        # including TotalCharges if present in the request.
+        monitor.log_prediction(
+            features=customer_dict,
+            prediction={
+                "p_churn": p_churn,
+                "segment": segment
+            },
+            business_metrics={
+                "BRV": brv,
+                "monthly_margin": monthly_margin,
+                "expected_gain": expected_gain,
+                "ROI": roi,
+                "retention_cost": retention_cost,
+                "decision": decision
+            }
+        )
+
+        # -----------------------------
+        # 9️⃣ Return response
         # -----------------------------
         return {
             "api_version": "1.0.0",
